@@ -1,5 +1,6 @@
-import 'package:DartWeb/src/gamekeyserver/User.dart';
-import 'package:DartWeb/src/gamekeyserver/Game.dart';
+library state;
+import 'Game.dart';
+import 'User.dart';
 
 /*
   This class holds all information about a stored gamestate

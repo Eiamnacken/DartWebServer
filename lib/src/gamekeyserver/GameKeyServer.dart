@@ -1,7 +1,8 @@
+library server;
+
 import 'dart:io';
 import 'dart:async';
 import 'dart:convert' show UTF8, JSON;
-import 'package:DartWeb/src/gamekeyserver/User.dart';
 import 'User.dart';
 
 

@@ -1,3 +1,4 @@
+library game;
 import 'dart:math';
 
 /*

@@ -94,9 +94,9 @@ class GameKeyServer {
    */
   Future<bool> readConfig() async {
     try {
-      final memoryuser = new File("memoryofallusers.json").readAsStringSync();
-      final memorygames = new File("memoryofallgames.json").readAsStringSync();
-      final memorygamestates = new File("memoryofallgamestates.json")
+      final memoryuser = new File("../../../memoryofallusers.json").readAsStringSync();
+      final memorygames = new File("../../../memoryofallgames.json").readAsStringSync();
+      final memorygamestates = new File("../../../memoryofallgamestates.json")
           .readAsStringSync();
       textfileUsers = JSON.decode(memoryuser);
       textfileGames = JSON.decode(memorygames);

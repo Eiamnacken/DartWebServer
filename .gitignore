@@ -13,3 +13,4 @@ pubspec.lock
 *.js.deps
 *.dart.js
 *.js.map
+packages

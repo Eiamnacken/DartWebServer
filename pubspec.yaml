@@ -1,10 +1,15 @@
 name: GameKeyServer
 version: 0.0.1
 description: >
-> Implementierung des GameKeyServers in Dart
+ > Ein Spiel.
 author:
+- Sven Marquardt <Sven2q@hotmail.de>
+- Cedric Pantermehl
+- Heiko Pantermehl
 - Markus Krebs
 homepage: https://github.com/Eiamnacken/DartWeb
 dependencies:
+  test: "^0.12.13+3"
+  crypto: any
 enviroment:
-sdk: ">=1.1.5"
+  sdk: ">=1.1.5"

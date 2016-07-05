@@ -1,5 +1,7 @@
 import 'dart:async';
-import '../lib/src/gamekeyserver/GameKey.dart';
+import 'package:GameKeyServer/src/gameKey/GameKey.dart';
+
+
 
 
 
@@ -12,8 +14,8 @@ main() async {
 
   //client();
 
-  GameKey test = new GameKey("212.201.22.169",50001);
-  //GameKey test = new GameKey("127.0.0.1", 4000);
+  //GameKey test = new GameKey("212.201.22.169",50001);
+  GameKey test = new GameKey("127.0.0.1", 4000);
 
   Future<Map> registergame = test.registerGame(
       "DontWorryAboutaThing", "BrickGame");

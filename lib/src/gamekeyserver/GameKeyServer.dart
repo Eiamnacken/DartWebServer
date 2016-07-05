@@ -94,9 +94,9 @@ class GameKeyServer {
    */
   Future<bool> readConfig() async {
     try {
-      final memoryuser = new File("../../../memoryofallusers.json").readAsStringSync();
-      final memorygames = new File("../../../memoryofallgames.json").readAsStringSync();
-      final memorygamestates = new File("../../../memoryofallgamestates.json")
+      final memoryuser = new File("memoryofallusers.json").readAsStringSync();
+      final memorygames = new File("memoryofallgames.json").readAsStringSync();
+      final memorygamestates = new File("memoryofallgamestates.json")
           .readAsStringSync();
       textfileUsers = JSON.decode(memoryuser);
       textfileGames = JSON.decode(memorygames);
@@ -156,7 +156,9 @@ class GameKeyServer {
       //the server waits for incoming requests to handle
       await for (var Httpreq in server) {
         enableCors(Httpreq.response);
+
         var isHandled = await handleMessages(Httpreq);
+
         switch (isHandled) {
           case 0 :
             break;
@@ -232,11 +234,11 @@ class GameKeyServer {
     );
     response.headers.add(
         "Access-Control-Allow-Methods",
-        "POST, GET, DELETE, PUT, OPTIONS"
+        "*"
     );
     response.headers.add(
         "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept, Charset"
+        "*"
     );
   }
 
@@ -251,6 +253,7 @@ class GameKeyServer {
     try {
       //body of incomming message
       var msg1 = await msg.transform(UTF8.decoder).join();
+
       var parameter = await Uri
           .parse("?$msg1")
           .queryParameters;
@@ -258,10 +261,8 @@ class GameKeyServer {
         parameter = msg.uri.queryParameters;
       }
       //which request is it ? ...
-
       //Request for create an user
-      RegExp postuser = new RegExp("/user");
-      if (msg.method == 'POST' && postuser.hasMatch(msg.requestedUri.path)) {
+      if (msg.method == 'POST' && msg.requestedUri.path=="/user") {
         final name = parameter["name"];
         final password = parameter["pwd"];
         final mail = parameter["mail"];
@@ -848,6 +849,7 @@ class GameKeyServer {
   Future<Map> addGameState(String gameid, userid, secret, String state) async {
     Map emptymap = new Map();
     String signature = generateSignature(gameid, secret);
+    Map status = JSON.decode(state);
     if (gettextfileGames.any((game) => game["id"] == gameid) &&
         gettextfileUsers.any((user) => user["id"] == userid)) {
       if (gettextfileGames.any((game) => game["id"] == gameid &&
@@ -863,7 +865,7 @@ class GameKeyServer {
           "gameid":"$gameid",
           "userid":"$userid",
           "created":"${new DateTime.now().toUtc().toIso8601String()}",
-          "state":"${JSON.decode(state)}"
+          "state": {"version":"${status['version']}", "points": status['points']}
         };
         textfileGamestates.add(newstate);
         return newstate;

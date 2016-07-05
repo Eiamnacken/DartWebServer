@@ -1,9 +1,6 @@
 import 'dart:async';
 import 'package:GameKeyServer/src/gameKey/gameKeyIo.dart';
-
-
-
-
+import 'package:test/test.dart';
 
 
 //Just for testing till class gamekeyserver
@@ -16,7 +13,6 @@ main() async {
 
   //GameKey test = new GameKey("212.201.22.169",50001);
   GameKey test = new GameKey("127.0.0.1", 4000);
-
   Future<Map> registergame = test.registerGame(
       "DontWorryAboutaThing", "BrickGame");
   registergame.then((content) {
@@ -28,6 +24,7 @@ main() async {
     print(content);
   });
 
+  //aber das hier nichtmehr meine ich
   Future<Map> getUser = test.getUser("aan", "dasdsads");
   getUser.then((content) {
     print(content);

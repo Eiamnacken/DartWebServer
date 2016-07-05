@@ -10,5 +10,6 @@ author:
 homepage: https://github.com/Eiamnacken/DartWeb
 dependencies:
   crypto: any
+  test: any
 enviroment:
   sdk: ">=1.1.5"

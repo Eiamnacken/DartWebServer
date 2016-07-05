@@ -234,11 +234,11 @@ class GameKeyServer {
     );
     response.headers.add(
         "Access-Control-Allow-Methods",
-        "*"
+        "POST, GET, DELETE, PUT, OPTIONS"
     );
     response.headers.add(
         "Access-Control-Allow-Headers",
-        "*"
+        "Origin, X-Requested-With, Content-Type, Accept, Charset"
     );
   }
 
